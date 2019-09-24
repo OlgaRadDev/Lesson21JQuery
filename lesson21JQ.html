@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        const menuContent = [
+            {
+                innerText: 'Main item',
+                className: 'mainMenu',
+                classItem: 'mainMenuItem',
+                innerItems: [
+
+                    {
+                        innerText: 'Sub item',
+                        className: 'subMenu',
+                        classItem: 'subMenuItem'
+                    },
+                    {
+                        innerText: 'Sub item',
+                        classItem: 'subMenuItem'
+                    },
+                    {
+                        innerText: 'Sub menu',
+                        classItem: 'subMenuItems',
+                        // classItem: 'subMenuItems',
+                        innerItems: [
+                            {
+                                innerText: 'Sub Item',
+                                className: 'subMenu2',
+                                classItem: 'subMenuItem'
+                            },
+                            {
+                                innerText: 'Sub Item',
+                                classItem: 'subMenuItem'
+
+                            },
+                            {
+                                innerText: 'Sub Item',
+                                classItem: 'subMenuItem'
+
+                            },
+                            {
+                                innerText: 'Sub Item',
+                                classItem: 'subMenuItem'
+
+                            }
+                        ]
+                    },
+                    {
+                        innerText: 'Sub item',
+                        classItem: 'subMenuItem'
+
+                    }
+
+                ],
+
+            },
+            {
+                innerText: 'Main item',
+                classItem: 'mainMenuItem'
+
+            },
+            {
+                innerText: 'Main item',
+                classItem: 'mainMenuItem'
+
+            },
+            {
+                innerText: 'Main item',
+                classItem: 'mainMenuItem'
+
+            }
+
+        ];
+
+        let container = $('<div></div>');
+        container.addClass('container');
+        $('body').append(container);
+        let navBox = $('<nav></nav>');
+        container.append(navBox);
+
+
+        const listBuild = (data, parentSelector) => {
+            let ul = $('<ul></ul>');
+
+            if (data.className) {
+                ul.addClass(data.className);
+            }
+
+            data.forEach(listItem => {
+                let liElem = $('<li></li>');
+                if (listItem.className) {
+                    ul.addClass(listItem.className);
+                }
+                if (listItem.classItem) {
+                    liElem.addClass(listItem.classItem);
+                }
+                let itemLink = $('<a></a>');
+                itemLink.attr('href', '#');
+                itemLink.text(listItem.innerText);
+                liElem.append(itemLink);
+
+                if (listItem.innerItems) {
+                    listBuild(listItem.innerItems, liElem)
+                }
+                ul.append(liElem);
+            });
+
+            parentSelector.append(ul);
+        };
+
+        listBuild(menuContent, navBox);
+        let subElem = document.querySelector('.mainMenuItem');
+        subElem.addEventListener('click', function () {
+            subElem.classList.add('open');
+        });
+
+        let subEl = document.querySelector('.subMenuItems');
+        subEl.addEventListener('click', function () {
+            subEl.classList.add('open');
+
+        });
+    })
+
+</script>
+</body>
+</html>

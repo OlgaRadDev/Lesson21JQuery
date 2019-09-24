@@ -1,0 +1,89 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 900px;
+}
+
+.mainMenu {
+    display: flex;
+    list-style-type: none;
+    font-size: 30px;
+    position: relative;
+}
+a {
+    text-decoration: none;
+    color: #142320;
+}
+
+ul {
+    padding-left: 0;
+}
+
+li:hover {
+    background-color: #aabfa3;
+}
+
+.mainMenuItem:not(:last-child) {
+    margin-right: 30px;
+}
+
+.mainMenuItem {
+    position: relative;
+    padding: 20px;
+}
+
+.subMenu {
+    margin: 0;
+    list-style: none;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    font-size: 25px;
+
+}
+.mainMenuItem.open > ul {
+    display:block;
+}
+
+.subMenuItems ul {
+    display:none;
+}
+
+.subMenu2 {
+    display: none;
+}
+
+.subMenuItems.open ul {
+    display:block;
+}
+
+.subMenu2 {
+    list-style: none;
+    position: absolute;
+    top: 100px;
+    right: -130px;
+    font-size: 25px;
+}
+.subMenuItem {
+    padding: 10px;
+}
+
+.mainMenuItem::after {
+    content:  ' ⇩';
+    font-size: 20px;
+}
+
+.subMenuItems::after {
+    content:  '⇒';
+    position: absolute;
+    right: -20px;
+
+}
+.subMenuItems {
+    padding: 10px;
+}
